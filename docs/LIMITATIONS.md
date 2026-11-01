@@ -1,0 +1,13 @@
+# Known limitations (v0.2)
+
+- Built in an environment WITHOUT internet access. 59 automated tests (formulas, tooth profile over all chains and tooth counts, every variant of every family, drawing layout, DXF structure, picking/editing bindings, assembly fit and interference, project/assembly files, search) pass. The React UI, 3D viewer, PDF/PNG/GLB/GLTF export, ZIP packaging, IndexedDB storage and the STEP export (replicad / OpenCascade) have NOT been run in a browser by the author. Expect to fix small issues on first run and send the error text.
+- `replicad` / `replicad-opencascadejs` are listed as "*" because exact versions could not be verified offline. After `npm install`, pin both to the installed version (`npm ls replicad replicad-opencascadejs`). Assembly STEP needs a compound builder (`compoundShapes` or `makeCompound`); if your version has neither, the ZIP contains per-part STEP files instead.
+- Logo: none was supplied. Put it at `public/assets/Logo.png`.
+- Sprocket tooth profile follows the ISO 606 limit formulas with an S-curve (seat arc, convex flank arc, tip arc). Verify the arc arrangement against the standard figure or supplier drawing; tooth side chamfer/radius and tolerances are not modelled.
+- No proprietary Ultraplast plastic chain, belt or sprocket geometry (needs your catalogue data). 63 of 97 catalogue items remain pending, notably all plastic chains and belts, motors/gearboxes, frames beyond single tube members, conveyors and drive/transfer assemblies.
+- Several implemented items are partial (see the Coverage page), for example fasteners = hex nut only, wear strips = flat strips, rollers = plain tube rollers.
+- 2D: views are generated, not hand-drawn; isometric views are edge projections without hidden-line removal; one detail view (sprocket tooth). Dimensions can be edited where they are direct parameters; calculated dimensions cannot. No moving of views, measure tool has no snapping.
+- 3D: part selection, hide/show, exploded (per-component), section, wireframe. Dragging parts in the 3D view is not implemented; place parts with the numeric position/rotation fields, nudge buttons and "align coaxial".
+- Assembly: no kinematic mates, no chain/belt path, no shaft keyways. Interference is exact only for coaxial round parts (bounding boxes otherwise). Assembly drawings are four projected views with the BOM in the notes.
+- Bearing internals illustrative; no load ratings.
+- Local storage: IndexedDB, per browser and device, not synchronised.
