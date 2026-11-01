@@ -5,8 +5,8 @@ export function loadKernel(): Promise<any> { // eslint-disable-line @typescript-
   ready ??= (async () => {
     const [R, oc, wasm] = await Promise.all([
       import('replicad'),
-      import('replicad-opencascadejs/src/replicad_single.js'),
-      import('replicad-opencascadejs/src/replicad_single.wasm?url'),
+      import('@oc/single'),
+      import('@oc/wasm?url'),
     ]);
     const OC = await (oc.default as (o: unknown) => Promise<unknown>)({ locateFile: () => wasm.default });
     (R as any).setOC(OC); // eslint-disable-line @typescript-eslint/no-explicit-any

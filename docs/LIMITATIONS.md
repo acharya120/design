@@ -1,6 +1,7 @@
 # Known limitations (v0.2)
 
 - Built in an environment WITHOUT internet access. 59 automated tests (formulas, tooth profile over all chains and tooth counts, every variant of every family, drawing layout, DXF structure, picking/editing bindings, assembly fit and interference, project/assembly files, search) pass. The React UI, 3D viewer, PDF/PNG/GLB/GLTF export, ZIP packaging, IndexedDB storage and the STEP export (replicad / OpenCascade) have NOT been run in a browser by the author. Expect to fix small issues on first run and send the error text.
+- `vite.config.ts` finds the OpenCascade files inside the installed `replicad-opencascadejs` package itself (`findOc.mjs`), because newer package versions block deep imports. If the files are missing the site still builds and STEP export shows an error message. If STEP fails in the browser, send me the message shown.
 - `replicad` / `replicad-opencascadejs` are listed as "*" because exact versions could not be verified offline. After `npm install`, pin both to the installed version (`npm ls replicad replicad-opencascadejs`). Assembly STEP needs a compound builder (`compoundShapes` or `makeCompound`); if your version has neither, the ZIP contains per-part STEP files instead.
 - Logo: none was supplied. Put it at `public/assets/Logo.png`.
 - Sprocket tooth profile follows the ISO 606 limit formulas with an S-curve (seat arc, convex flank arc, tip arc). Verify the arc arrangement against the standard figure or supplier drawing; tooth side chamfer/radius and tolerances are not modelled.
